@@ -12,26 +12,26 @@ import NavLink from '../NavLink'
 const items = (i18n: I18n) => [
   {
     name: i18n._(t`Docs`),
-    description: i18n._(t`Documentation for users of MIST.`),
-    href: 'https://docs.mistswap.fi',
+    description: i18n._(t`Docs for FOW.`),
+    href: 'https://docs.FOW.cash',
     external: true,
   },
   {
     name: i18n._(t`Open Source`),
-    description: i18n._(t`MIST is a supporter of Open Source.`),
-    href: 'https://github.com/mistswapdex',
+    description: i18n._(t`FOW is a supporter of Open Source.`),
+    href: 'https://github.com/SayoshiNakamari',
     external: true,
   },
   {
     name: i18n._(t`Discord`),
     description: i18n._(t`Join the community on Discord.`),
-    href: 'https://discord.gg/xFTnQEzu9T',
+    href: 'www.google.com',
     external: true,
   },
   {
     name: i18n._(t`Telegram`),
     description: i18n._(t`Join the community on Telegram.`),
-    href: 'https://t.me/MistSwapOfficial',
+    href: 'www.google.com',
     external: true,
   },
 ]
