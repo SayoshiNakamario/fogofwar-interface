@@ -1,6 +1,6 @@
 # FOW Interface
 
-FOW Interface is a progressive web application for the MISTswap Protocol.
+FOW Interface is a progressive web application for the FOW Protocol.
 
 ## Getting started
 
