@@ -76,30 +76,17 @@ function AppBar(): JSX.Element {
 
                 <div className="fixed bottom-0 left-0 z-10 flex flex-row items-center justify-center w-full p-4 lg:w-auto bg-dark-1000 lg:relative lg:p-0 lg:bg-transparent">
                   <div className="flex items-center justify-between w-full space-x-2 sm:justify-end">
-                    {chainId && [ChainId.SMARTBCH].includes(chainId) && library && library.provider.isMetaMask && (
-                      <>
-                        <AddToken
-                          imageProps={{src: "/images/tokens/xmist-square.jpg", alt: "xMIST"}}
-                          text={i18n._(t`Add xMIST to your MetaMask wallet`)}
-                          metamaskProps={{
-                            address: '0xC41C680c60309d4646379eD62020c534eB67b6f4',
-                            symbol: 'xMIST',
-                            decimals: 18,
-                            image: 'https://raw.githubusercontent.com/mistswapdex/assets/master/blockchains/smartbch/assets/0xC41C680c60309d4646379eD62020c534eB67b6f4/logo.png',
-                          }} />
-                      </>
-                    )}
 
                     {chainId && chainId in MIST_ADDRESS && library && library.provider.isMetaMask && (
                       <>
                         <AddToken
-                          imageProps={{src: "/images/tokens/mist-square.jpg", alt: "MIST"}}
-                          text={i18n._(t`Add MIST to your MetaMask wallet`)}
+                          imageProps={{src: "/images/tokens/unknown.png", alt: "FOW"}}
+                          text={i18n._(t`Add FOW to your MetaMask wallet`)}
                           metamaskProps={{
                             address: MIST_ADDRESS[chainId],
-                            symbol: 'MIST',
+                            symbol: 'FOW',
                             decimals: 18,
-                            image: 'https://raw.githubusercontent.com/mistswapdex/assets/master/blockchains/smartbch/assets/0x5fA664f69c2A4A3ec94FaC3cBf7049BD9CA73129/logo.png',
+                            image: 'https://raw.githubusercontent.com/mistswapdex/assets/master/blockchains/smartbch/assets/0x0E36C351ff40183435C9Bd1D17bfb1F3548f1963/logo.png',
                           }} />
                       </>
                     )}
