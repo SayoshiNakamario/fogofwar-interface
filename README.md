@@ -12,7 +12,7 @@ git clone https://github.com/mistswapdex/mistswap-interface.git && cd mistswap-i
 
 ## Add your logo
 
-Add your logo by opening a PR against mistswapdex/assets
+Add your logo by opening a PR against FowWow
 
 ## Licence
 
