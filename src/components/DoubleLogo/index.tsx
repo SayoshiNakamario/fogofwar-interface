@@ -1,4 +1,4 @@
-import { Currency } from '@mistswapdex/sdk'
+import { Currency } from '@fogofwar/sdk'
 import CurrencyLogo from '../CurrencyLogo'
 import React from 'react'
 import { classNames } from '../../functions'

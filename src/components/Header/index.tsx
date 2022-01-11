@@ -1,4 +1,4 @@
-import { ChainId, Currency, NATIVE, MIST_ADDRESS } from '@mistswapdex/sdk'
+import { ChainId, Currency, NATIVE, FOG_ADDRESS } from '@fogofwar/sdk'
 import { Feature, featureEnabled } from '../../functions/feature'
 import React, { useEffect, useState } from 'react'
 
@@ -43,13 +43,13 @@ function AppBar(): JSX.Element {
                   <Image src="/logo.png" alt="Mist" width="51px" height="32px" />
                   <div className="hidden sm:block sm:ml-4">
                     <div className="flex space-x-2">
-                        <ExternalLink
-                          id={``}
-                          href={'https://app.mistswap.fi/pool'}
-                          className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
-                        >
-                          {i18n._(t`Get Liquidity`)}
-                        </ExternalLink>
+                      <ExternalLink
+                        id={``}
+                        href={'https://app.mistswap.fi/pool'}
+                        className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
+                      >
+                        {i18n._(t`Get Liquidity`)}
+                      </ExternalLink>
                       {chainId && featureEnabled(Feature.LIQUIDITY_MINING, chainId) && (
                         <NavLink href={'/farm'}>
                           <a
@@ -76,18 +76,19 @@ function AppBar(): JSX.Element {
 
                 <div className="fixed bottom-0 left-0 z-10 flex flex-row items-center justify-center w-full p-4 lg:w-auto bg-dark-1000 lg:relative lg:p-0 lg:bg-transparent">
                   <div className="flex items-center justify-between w-full space-x-2 sm:justify-end">
-
-                    {chainId && chainId in MIST_ADDRESS && library && library.provider.isMetaMask && (
+                    {chainId && chainId in FOG_ADDRESS && library && library.provider.isMetaMask && (
                       <>
                         <AddToken
-                          imageProps={{src: "/images/tokens/unknown.png", alt: "FOW"}}
+                          imageProps={{ src: '/images/tokens/unknown.png', alt: 'FOW' }}
                           text={i18n._(t`Add FOW to your MetaMask wallet`)}
                           metamaskProps={{
-                            address: MIST_ADDRESS[chainId],
-                            symbol: 'FOW',
+                            address: FOG_ADDRESS[chainId],
+                            symbol: 'FOG',
                             decimals: 18,
-                            image: 'https://raw.githubusercontent.com/mistswapdex/assets/master/blockchains/smartbch/assets/0x0E36C351ff40183435C9Bd1D17bfb1F3548f1963/logo.png',
-                          }} />
+                            image:
+                              'https://raw.githubusercontent.com/mistswapdex/assets/master/blockchains/smartbch/assets/0x0E36C351ff40183435C9Bd1D17bfb1F3548f1963/logo.png',
+                          }}
+                        />
                       </>
                     )}
 
@@ -110,7 +111,7 @@ function AppBar(): JSX.Element {
                     <div className="hidden md:block sm:block">
                       <LanguageSwitch />
                     </div>
-                    <ThemeSwitch/>
+                    <ThemeSwitch />
                     <More />
                   </div>
                 </div>
@@ -179,16 +180,15 @@ function AppBar(): JSX.Element {
                   </a>
                 </Link>
 
-
                 {chainId && featureEnabled(Feature.MIGRATE, chainId) && (
-                <Link href={'/migrate'}>
-                  <a
-                    id={`migrate-nav-link`}
-                    className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
-                  >
-                    {i18n._(t`Migrate`)}
-                  </a>
-                </Link>
+                  <Link href={'/migrate'}>
+                    <a
+                      id={`migrate-nav-link`}
+                      className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
+                    >
+                      {i18n._(t`Migrate`)}
+                    </a>
+                  </Link>
                 )}
 
                 {chainId && featureEnabled(Feature.LIQUIDITY_MINING, chainId) && (

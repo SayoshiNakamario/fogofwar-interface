@@ -1689,6 +1689,26 @@
   dependencies:
     keccak "^3.0.0"
 
+"@fogofwar/core@0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@fogofwar/core/-/core-0.0.3.tgz#657ba4d59d907a3ae720e2f5518b9cd35bbd4c60"
+  integrity sha512-YVeNvwtPqLZ3uhaENB1JoxjDMPIaTKAf80iieBYkk+OBEv7iCGXNmDq/Gmlu1wSzJrp5Mfc6G7YP8KLs5SBWUA==
+  dependencies:
+    eip-712 "^0.4.3"
+
+"@fogofwar/sdk@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@fogofwar/sdk/-/sdk-0.0.12.tgz#8fc2960a7dbe62321f84072fe521b2e3a5506b0b"
+  integrity sha512-GLveF+EtQ51MFOob/BY6GhWqrFHncR+7HpzE/yBwX0bx2ov421TkUnIs6yKlZgkMYqJ/tzbRUkbIrEt6C0yGHw==
+  dependencies:
+    big.js "^6.1.0"
+    decimal.js-light "^2.5.0"
+    isomorphic-unfetch "^3.1.0"
+    jsbi "^3.1.6"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.3"
+    toformat "^2.0.0"
+
 "@fontsource/dm-sans@^4.5.0":
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/@fontsource/dm-sans/-/dm-sans-4.5.0.tgz#0dae7ab3563b3ffd47181a3fa4c9c6a33fb04c5e"
@@ -2214,15 +2234,6 @@
   resolved "https://registry.yarnpkg.com/@metamask/safe-event-emitter/-/safe-event-emitter-2.0.0.tgz#af577b477c683fad17c619a78208cede06f9605c"
   integrity sha512-/kSXhY692qiV1MXu6EeOZvg5nECLclxNXcKCxJ3cXQgYuRymRHpdx/t7JXfsK+JLjwA1e1c1/SBrlQYpusC29Q==
 
-"@mistswapdex/core@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@mistswapdex/core/-/core-0.0.3.tgz#147ed00265e64ba7df0697bcdbf4bde281a764ee"
-  integrity sha512-oKCoQ55YkdVMMR3CoYaYHct4XJ9pE81d3kZuNjXO9S/38XO4U0CryaXGAtYLfYrRJpGjflIWCDTPyPQ3z4uRzQ==
-  dependencies:
-    eip-712 "^0.4.3"
-    patch-package "^6.4.7"
-    postinstall-postinstall "^2.1.0"
-
 "@mistswapdex/default-token-list@0.0.26":
   version "0.0.26"
   resolved "https://registry.yarnpkg.com/@mistswapdex/default-token-list/-/default-token-list-0.0.26.tgz#faa6bdba018635849458f67b05d3a2f8a185ec96"
@@ -2230,19 +2241,6 @@
   dependencies:
     commitlint "^13.1.0"
     lint-staged "^11.1.2"
-
-"@mistswapdex/sdk@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@mistswapdex/sdk/-/sdk-0.0.12.tgz#0b0a2224c3718e68e2765f3c0a6a245998bcbcd7"
-  integrity sha512-vBZHj3zPZXNooZodAFkDJPzs9/R2HC9+bkCCRbXYFAWDUuEWJiHxz1ERmX+UnglxeiQ+BiglESS2INJbahNgQA==
-  dependencies:
-    big.js "^6.1.0"
-    decimal.js-light "^2.5.0"
-    isomorphic-unfetch "^3.1.0"
-    jsbi "^3.1.0"
-    tiny-invariant "^1.1.0"
-    tiny-warning "^1.0.3"
-    toformat "^2.0.0"
 
 "@napi-rs/triples@^1.0.3":
   version "1.0.3"
@@ -10227,10 +10225,15 @@ js-yaml@^3.13.1:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
-jsbi@^3.1.0, jsbi@^3.1.5:
+jsbi@^3.1.5:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-3.2.1.tgz#513a8f404abb9d5ba725f5265265b688215ee9f0"
   integrity sha512-NzcT09wuJReIO829enrY3yRdHFz+ciVIq01PCGPkHlwIv5Dj9v2F4daQ4akwuPHf6xO/oii4Jrd3BsPepOxXrg==
+
+jsbi@^3.1.6:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-3.2.5.tgz#b37bb90e0e5c2814c1c2a1bcd8c729888a2e37d6"
+  integrity sha512-aBE4n43IPvjaddScbvWRA2YlTzKEynHzu7MqOyTipdHucf/VxS63ViCjxYRg86M8Rxwbt/GfzHl1kKERkt45fQ==
 
 jsbn@~0.1.0:
   version "0.1.1"
