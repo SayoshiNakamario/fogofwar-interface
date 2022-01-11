@@ -1,8 +1,6 @@
-import {
-    MIST, XMIST, FLEXUSD
-} from '../config/tokens'
+import { FOG, XMIST, FLEXUSD } from '../config/tokens'
 // a list of tokens by chain
-import { ChainId, Currency, Token, WNATIVE } from '@mistswapdex/sdk'
+import { ChainId, Currency, Token, WNATIVE } from '@fogofwar/sdk'
 
 type ChainTokenList = {
   readonly [chainId: number]: Token[]
@@ -11,8 +9,7 @@ type ChainTokenList = {
 // List of all mirror's assets addresses.
 // Last pulled from : https://whitelist.mirror.finance/eth/tokenlists.json
 // TODO: Generate this programmatically ?
-const MIRROR_ADDITIONAL_BASES: { [tokenAddress: string]: Token[] } = {
-}
+const MIRROR_ADDITIONAL_BASES: { [tokenAddress: string]: Token[] } = {}
 
 // TODO: SDK should have two maps, WETH map and WNATIVE map.
 const WRAPPED_NATIVE_ONLY: ChainTokenList = {
@@ -47,15 +44,8 @@ export const CUSTOM_BASES: {
  * Shows up in the currency select for swap and add liquidity
  */
 export const COMMON_BASES: ChainTokenList = {
-  [ChainId.SMARTBCH]: [
-    ...WRAPPED_NATIVE_ONLY[ChainId.SMARTBCH],
-    FLEXUSD,
-    MIST[ChainId.SMARTBCH],
-  ],
-  [ChainId.SMARTBCH_AMBER]: [
-    ...WRAPPED_NATIVE_ONLY[ChainId.SMARTBCH_AMBER],
-    MIST[ChainId.SMARTBCH_AMBER],
-  ],
+  [ChainId.SMARTBCH]: [...WRAPPED_NATIVE_ONLY[ChainId.SMARTBCH], FLEXUSD, FOG[ChainId.SMARTBCH]],
+  [ChainId.SMARTBCH_AMBER]: [...WRAPPED_NATIVE_ONLY[ChainId.SMARTBCH_AMBER], FOG[ChainId.SMARTBCH_AMBER]],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
@@ -68,10 +58,6 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 export const PINNED_PAIRS: {
   readonly [chainId in ChainId]?: [Token, Token][]
 } = {
-  [ChainId.SMARTBCH]: [
-      [MIST[ChainId.SMARTBCH], WNATIVE[ChainId.SMARTBCH]],
-  ],
-  [ChainId.SMARTBCH_AMBER]: [
-      [MIST[ChainId.SMARTBCH_AMBER], WNATIVE[ChainId.SMARTBCH_AMBER]]
-  ],
+  [ChainId.SMARTBCH]: [[FOG[ChainId.SMARTBCH], WNATIVE[ChainId.SMARTBCH]]],
+  [ChainId.SMARTBCH_AMBER]: [[FOG[ChainId.SMARTBCH_AMBER], WNATIVE[ChainId.SMARTBCH_AMBER]]],
 }

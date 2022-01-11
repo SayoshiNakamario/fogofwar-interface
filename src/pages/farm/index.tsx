@@ -12,8 +12,8 @@ import {
 } from '../../services/graph'
 
 import { BigNumber } from '@ethersproject/bignumber'
-import { ChainId, WNATIVE, Token, WBCH, MASTERCHEF_ADDRESS } from '@mistswapdex/sdk'
-import { MIST, FLEXUSD } from '../../config/tokens'
+import { ChainId, WNATIVE, Token, WBCH, MASTERCHEF_ADDRESS } from '@fogofwar/sdk'
+import { FOG, FLEXUSD } from '../../config/tokens'
 import Container from '../../components/Container'
 import FarmList from '../../features/onsen/FarmList'
 import Head from 'next/head'
@@ -52,13 +52,13 @@ export default function Farm(): JSX.Element {
       '0x674A71E69fe8D5cCff6fdcF9F1Fa4262Aa14b154': {
         farmId: 7,
         allocPoint: 314847489,
-        token0: MIST[ChainId.SMARTBCH],
+        token0: FOG[ChainId.SMARTBCH],
         token1: WBCH[ChainId.SMARTBCH],
       },
       '0x437E444365aD9ed788e8f255c908bceAd5AEA645': {
         farmId: 8,
         allocPoint: 57663568,
-        token0: MIST[ChainId.SMARTBCH],
+        token0: FOG[ChainId.SMARTBCH],
         token1: FLEXUSD,
       },
       '0x80F712670d268cf2C05e7162674c7466c940eBE3': {
@@ -147,19 +147,19 @@ export default function Farm(): JSX.Element {
 
   farms = farms.sort((a, b) => b.allocPoint - a.allocPoint)
 
-  const flexUSDMistPool = farms.find((v) => v.pair === '0x437E444365aD9ed788e8f255c908bceAd5AEA645').pool
+  const flexUSDFOGPool = farms.find((v) => v.pair === '0x437E444365aD9ed788e8f255c908bceAd5AEA645').pool
   const bchFlexUSDPool = farms.find((v) => v.pair === '0x24f011f12Ea45AfaDb1D4245bA15dCAB38B43D13').pool
   let bchPriceUSD = 0
-  let mistPriceUSD = 0
+  let FOGPriceUSD = 0
   if (bchFlexUSDPool.reserves) {
     bchPriceUSD =
       Number.parseFloat(bchFlexUSDPool.reserves[1].toFixed()) / Number.parseFloat(bchFlexUSDPool.reserves[0].toFixed())
   }
-  if (flexUSDMistPool.reserves) {
-    mistPriceUSD =
+  if (flexUSDFOGPool.reserves) {
+    FOGPriceUSD =
       1 /
-      (Number.parseFloat(flexUSDMistPool.reserves[0].toFixed()) /
-        Number.parseFloat(flexUSDMistPool.reserves[1].toFixed()))
+      (Number.parseFloat(flexUSDFOGPool.reserves[0].toFixed()) /
+        Number.parseFloat(flexUSDFOGPool.reserves[1].toFixed()))
   }
 
   const [v2PairsBalances, fetchingV2PairBalances] = useTokenBalancesWithLoadingIndicator(
@@ -174,12 +174,12 @@ export default function Farm(): JSX.Element {
         const chefBalance = Number.parseFloat(v2PairsBalances[farms[i].pair].toFixed())
 
         let tvl = 0
-        if (farms[i].pool.token0 === MIST[chainId].address) {
+        if (farms[i].pool.token0 === FOG[chainId].address) {
           const reserve = Number.parseFloat(farms[i].pool.reserves[0].toFixed())
-          tvl = (reserve / totalSupply) * chefBalance * mistPriceUSD * 2
-        } else if (farms[i].pool.token1 === MIST[chainId].address) {
+          tvl = (reserve / totalSupply) * chefBalance * FOGPriceUSD * 2
+        } else if (farms[i].pool.token1 === FOG[chainId].address) {
           const reserve = Number.parseFloat(farms[i].pool.reserves[1].toFixed())
-          tvl = (reserve / totalSupply) * chefBalance * mistPriceUSD * 2
+          tvl = (reserve / totalSupply) * chefBalance * FOGPriceUSD * 2
         } else if (farms[i].pool.token0 === FLEXUSD.address) {
           const reserve = Number.parseFloat(farms[i].pool.reserves[0].toFixed())
           tvl = (reserve / totalSupply) * chefBalance * 2
@@ -242,11 +242,11 @@ export default function Farm(): JSX.Element {
       const rewardPerBlock = (pool.allocPoint / pool.owner.totalAllocPoint) * sushiPerBlock
 
       const defaultReward = {
-        token: 'MIST',
+        token: 'FOG',
         icon: 'https://raw.githubusercontent.com/mistswapdex/assets/master/blockchains/smartbch/assets/0x5fA664f69c2A4A3ec94FaC3cBf7049BD9CA73129/logo.png',
         rewardPerBlock,
         rewardPerDay: rewardPerBlock * blocksPerDay,
-        rewardPrice: +mistPriceUSD,
+        rewardPrice: +FOGPriceUSD,
       }
 
       const defaultRewards = [defaultReward]
@@ -321,8 +321,8 @@ export default function Farm(): JSX.Element {
       maxWidth="7xl"
     >
       <Head>
-        <title>Farm | Mist</title>
-        <meta key="description" name="description" content="Farm MIST" />
+        <title>Farm | FOG</title>
+        <meta key="description" name="description" content="Farm FOG" />
       </Head>
       <div className={classNames('px-3 md:px-0 lg:block md:col-span-1')}>
         <Menu positionsLength={positions.length} />
