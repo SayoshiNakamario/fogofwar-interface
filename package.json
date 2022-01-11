@@ -1,5 +1,5 @@
 {
-  "name": "mistswap-interface",
+  "name": "fogofwar-interface",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -55,9 +55,9 @@
     "@lingui/react": "^3.10.2",
     "@lingui/remote-loader": "^3.10.4",
     "@metamask/jazzicon": "^2.0.0",
-    "@mistswapdex/core": "0.0.3",
+    "@fogofwar/core": "0.0.3",
     "@mistswapdex/default-token-list": "0.0.26",
-    "@mistswapdex/sdk": "^0.0.12",
+    "@fogofwar/sdk": "^0.0.12",
     "@next/bundle-analyzer": "^11.1.0",
     "@popperjs/core": "^2.9.2",
     "@ramp-network/ramp-instant-sdk": "^2.4.6",
