@@ -1,4 +1,4 @@
-import { ChainId, Currency, NATIVE, Token, WNATIVE, WNATIVE_ADDRESS, currencyEquals } from '@mistswapdex/sdk'
+import { ChainId, Currency, NATIVE, Token, WNATIVE, WNATIVE_ADDRESS, currencyEquals } from '@fogofwar/sdk'
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
 import { TokenAddressMap, useAllLists, useInactiveListUrls, useUnsupportedTokenList } from './../state/lists/hooks'
 import { useBytes32TokenContract, useTokenContract } from './useContract'
@@ -22,7 +22,7 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
     if (!chainId) return {}
 
     if (typeof tokenMap[chainId] === 'undefined') {
-      return {};
+      return {}
     }
 
     // reduce to just tokens
@@ -197,7 +197,7 @@ export function useCurrency(currencyId: string | undefined): Currency | null | u
   // const weth = chainId ? WBCH_EXTENDED[chainId] : undefined
 
   const native = useMemo(() => (chainId ? NATIVE[chainId] : undefined), [chainId])
-  if (useNative) return native;
+  if (useNative) return native
 
   const wnative = chainId ? WNATIVE[chainId] : undefined
   if (wnative?.address?.toLowerCase() === currencyId?.toLowerCase()) return wnative

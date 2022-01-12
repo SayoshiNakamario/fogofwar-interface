@@ -1,11 +1,4 @@
-import {
-  Currency,
-  CurrencyAmount,
-  Percent,
-  ROUTER_ADDRESS,
-  TradeType,
-  Trade as V2Trade,
-} from '@mistswapdex/sdk'
+import { Currency, CurrencyAmount, Percent, ROUTER_ADDRESS, TradeType, Trade as V2Trade } from '@fogofwar/sdk'
 import { useCallback, useMemo } from 'react'
 import { useHasPendingApproval, useTransactionAdder } from '../state/transactions/hooks'
 
@@ -44,9 +37,7 @@ export function useApproveCallback(
     if (currentAllowance.equalTo(0)) {
       return pendingApproval ? ApprovalState.PENDING : ApprovalState.NOT_APPROVED
     } else if (currentAllowance.lessThan(amountToApprove)) {
-      return pendingApproval
-        ? ApprovalState.PENDING
-        : ApprovalState.NOT_APPROVED
+      return pendingApproval ? ApprovalState.PENDING : ApprovalState.NOT_APPROVED
     } else {
       return ApprovalState.APPROVED
     }
@@ -56,7 +47,7 @@ export function useApproveCallback(
   const addTransaction = useTransactionAdder()
 
   const approve = useCallback(async (): Promise<void> => {
-    console.log(approvalState);
+    console.log(approvalState)
     if (approvalState !== ApprovalState.NOT_APPROVED) {
       console.error('approve was called unnecessarily')
       return
@@ -121,12 +112,6 @@ export function useApproveCallbackFromTrade(
   )
   return useApproveCallback(
     amountToApprove,
-    chainId
-      ? trade instanceof V2Trade
-        ? !doArcher
-          ? ROUTER_ADDRESS[chainId]
-          : undefined
-        : undefined
-      : undefined
+    chainId ? (trade instanceof V2Trade ? (!doArcher ? ROUTER_ADDRESS[chainId] : undefined) : undefined) : undefined
   )
 }

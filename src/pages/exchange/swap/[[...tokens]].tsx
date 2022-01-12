@@ -1,12 +1,4 @@
-import {
-  ChainId,
-  Currency,
-  CurrencyAmount,
-  JSBI,
-  Token,
-  TradeType,
-  Trade as V2Trade,
-} from '@mistswapdex/sdk'
+import { ChainId, Currency, CurrencyAmount, JSBI, Token, TradeType, Trade as V2Trade } from '@fogofwar/sdk'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../../hooks/useApproveCallback'
 import { ArrowWrapper, BottomGrouping, SwapCallbackError } from '../../../features/exchange-v1/swap/styleds'
 import { ButtonConfirmed, ButtonError } from '../../../components/Button'
@@ -77,7 +69,7 @@ import { useTheme } from '../../../components/ThemeSwitch'
 
 export default function Swap() {
   const { i18n } = useLingui()
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
   const loadedUrlParams = useDefaultsFromURLSearch()
 
@@ -302,8 +294,7 @@ export default function Swap() {
           action: 'Swap',
           name: txHash,
           value: null,
-        });
-
+        })
       })
       .catch((error) => {
         setSwapState({
@@ -427,12 +418,8 @@ export default function Swap() {
   return (
     <Container id="swap-page" className="py-4 md:py-8 lg:py-12">
       <Head>
-        <title>{GetRateText({price: trade?.executionPrice, showInverted}) || i18n._(t`MISTswap`)} | MISTswap</title>
-        <meta
-          key="description"
-          name="description"
-          content="MISTswap allows for swapping of SEP20 compatible tokens"
-        />
+        <title>{GetRateText({ price: trade?.executionPrice, showInverted }) || i18n._(t`MISTswap`)} | MISTswap</title>
+        <meta key="description" name="description" content="MISTswap allows for swapping of SEP20 compatible tokens" />
       </Head>
       <TokenWarningModal
         isOpen={importTokensNotInDefault.length > 0 && !dismissTokenWarning}
@@ -496,7 +483,7 @@ export default function Swap() {
                       onMouseLeave={() => setAnimateSwapArrows(false)}
                     >
                       <Lottie
-                        animationData={theme ==='light' ? swapArrowsLightAnimationData : swapArrowsAnimationData}
+                        animationData={theme === 'light' ? swapArrowsLightAnimationData : swapArrowsAnimationData}
                         autoplay={animateSwapArrows}
                         loop={false}
                         style={{ width: 32, height: 32 }}

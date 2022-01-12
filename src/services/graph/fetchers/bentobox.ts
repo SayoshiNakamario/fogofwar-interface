@@ -1,13 +1,13 @@
 import { bentoUserTokensQuery, kashiPairsQuery, kashiUserPairsQuery } from '../queries/bentobox'
 import { getFraction, toAmount } from '../../../functions'
 
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 import { GRAPH_HOST } from '../constants'
 import { getTokenSubset } from './exchange'
 import { pager } from '.'
 
 export const BENTOBOX = {
-  [ChainId.SMARTBCH]: 'mistswap/bentobox',
+  [ChainId.SMARTBCH]: 'fogofwar/bentobox',
 }
 export const fetcher = async (chainId = ChainId.SMARTBCH, query, variables = undefined) =>
   pager(`${GRAPH_HOST[chainId]}/subgraphs/name/${BENTOBOX[chainId]}`, query, variables)

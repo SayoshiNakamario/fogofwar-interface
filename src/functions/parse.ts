@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, JSBI } from '@mistswapdex/sdk'
+import { Currency, CurrencyAmount, JSBI } from '@fogofwar/sdk'
 
 import { parseUnits } from '@ethersproject/units'
 
@@ -9,7 +9,7 @@ export function parseBalance(value: string, decimals = 18) {
 // try to parse a user entered amount for a given token
 export function tryParseAmount<T extends Currency>(value?: string, currency?: T): CurrencyAmount<T> | undefined {
   if (!value) {
-    value = "0"
+    value = '0'
   }
   if (!currency) {
     return undefined

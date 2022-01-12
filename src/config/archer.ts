@@ -1,12 +1,10 @@
-import { ChainId, JSBI } from '@mistswapdex/sdk'
+import { ChainId, JSBI } from '@fogofwar/sdk'
 
 import { BigNumber } from '@ethersproject/bignumber'
 
-export const ARCHER_RELAY_URI: { [chainId in ChainId]?: string } = {
-}
+export const ARCHER_RELAY_URI: { [chainId in ChainId]?: string } = {}
 
-export const ARCHER_GAS_URI: { [chainId in ChainId]?: string } = {
-}
+export const ARCHER_GAS_URI: { [chainId in ChainId]?: string } = {}
 
 // default archer gas estimate, 250k wei
 export const DEFAULT_ARCHER_GAS_ESTIMATE: BigNumber = BigNumber.from(250000)

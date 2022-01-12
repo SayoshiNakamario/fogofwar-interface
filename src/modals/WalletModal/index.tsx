@@ -21,7 +21,7 @@ import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import usePrevious from '../../hooks/usePrevious'
 import { SUPPORTED_NETWORKS } from '../NetworkModal'
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 import cookie from 'cookie-cutter'
 import { useActiveWeb3React } from '../../hooks'
 
@@ -159,29 +159,29 @@ export default function WalletModal({
     const params = SUPPORTED_NETWORKS[ChainId.SMARTBCH]
     cookie.set('chainId', ChainId.SMARTBCH)
 
-    const ethereum = window.ethereum as any;
+    const ethereum = window.ethereum as any
     try {
       await ethereum.request({
-        method: "wallet_switchEthereumChain",
-        params: [ { chainId: params.chainId } ],
-      });
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: params.chainId }],
+      })
     } catch (switchError: any) {
-      console.log(switchError);
+      console.log(switchError)
       // This error code indicates that the chain has not been added to MetaMask.
       if (switchError.code === 4902) {
         try {
           await ethereum.request({
-            method: "wallet_addEthereumChain",
-            params: [ params ],
-          });
+            method: 'wallet_addEthereumChain',
+            params: [params],
+          })
         } catch (addError) {
-          console.log(addError);
+          console.log(addError)
           // handle adding network error
-          throw addError;
+          throw addError
         }
       } else {
         // handle other "switch" errors
-        throw switchError;
+        throw switchError
       }
     }
   }

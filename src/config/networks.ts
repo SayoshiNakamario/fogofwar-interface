@@ -1,7 +1,7 @@
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 
-const SmartBCH = 'https://raw.githubusercontent.com/mistswapdex/icons/master/network/smartbch.jpg'
-const SmartBCHAmber = 'https://raw.githubusercontent.com/mistswapdex/icons/master/network/smartbch_amber.jpg'
+const SmartBCH = 'https://raw.githubusercontent.com/SayoshiNakamario/icons/master/network/smartbch.jpg'
+const SmartBCHAmber = 'https://raw.githubusercontent.com/SayoshiNakamario/icons/master/network/smartbch_amber.jpg'
 
 export const NETWORK_ICON = {
   [ChainId.SMARTBCH]: SmartBCH,

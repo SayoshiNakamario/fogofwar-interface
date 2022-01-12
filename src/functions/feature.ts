@@ -1,4 +1,4 @@
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 
 export enum Feature {
   AMM = 'AMM',
@@ -18,7 +18,7 @@ const features = {
     Feature.LIQUIDITY_MINING,
     // Feature.MIGRATE,
     Feature.ANALYTICS,
-    Feature.STAKING
+    Feature.STAKING,
   ],
   [ChainId.SMARTBCH_AMBER]: [
     Feature.AMM,

@@ -5,13 +5,13 @@ import {
   CurrencyAmount,
   JSBI,
   Percent,
-  MIST_ADDRESS,
+  FOG_ADDRESS,
   ROUTER_ADDRESS,
   FACTORY_ADDRESS,
   TradeType,
   Trade as V2Trade,
   WNATIVE_ADDRESS,
-} from '@mistswapdex/sdk'
+} from '@fogofwar/sdk'
 import { DEFAULT_ARCHER_ETH_TIP, DEFAULT_ARCHER_GAS_ESTIMATE } from '../../config/archer'
 import {
   EstimatedSwapCall,
@@ -345,14 +345,14 @@ function validatedRecipient(recipient: any): string | null {
 }
 
 export function defaultSwapState(): SwapState {
-  return queryParametersToSwapState(initialState);
+  return queryParametersToSwapState(initialState)
 }
 
 export function queryParametersToSwapState(parsedQs: ParsedQs, chainId: ChainId = ChainId.SMARTBCH): SwapState {
   let inputCurrency = parseCurrencyFromURLParameter(parsedQs.inputCurrency)
   let outputCurrency = parseCurrencyFromURLParameter(parsedQs.outputCurrency)
   const eth = 'BCH'
-  const sushi = MIST_ADDRESS[chainId]
+  const sushi = FOG_ADDRESS[chainId]
   if (inputCurrency === '' && outputCurrency === '') {
     inputCurrency = eth
     outputCurrency = sushi
@@ -405,7 +405,7 @@ export function useDefaultsFromURLSearch():
     return {
       inputCurrencyId: defaultState[Field.INPUT].currencyId,
       outputCurrencyId: defaultState[Field.OUTPUT].currencyId,
-    };
+    }
   }
 
   useEffect(() => {

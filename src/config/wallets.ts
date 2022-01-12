@@ -1,5 +1,5 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { NetworkConnector } from '../entities/NetworkConnector'
 import RPC from './rpc'
@@ -52,10 +52,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
         rpc: RPC,
         bridge: 'https://bridge.walletconnect.org',
         qrcode: true,
-        supportedChainIds: [
-          ChainId.SMARTBCH,
-          ChainId.SMARTBCH_AMBER,
-        ],
+        supportedChainIds: [ChainId.SMARTBCH, ChainId.SMARTBCH_AMBER],
       })
     },
     name: 'WalletConnect',

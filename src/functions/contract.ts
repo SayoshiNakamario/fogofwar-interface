@@ -1,6 +1,6 @@
 // NOTE: Try not to add anything to thie file, it's almost entirely refactored out.
 
-import { ChainId, ROUTER_ADDRESS } from '@mistswapdex/sdk'
+import { ChainId, ROUTER_ADDRESS } from '@fogofwar/sdk'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 
 import { AddressZero } from '@ethersproject/constants'
@@ -38,12 +38,7 @@ export function getRouterAddress(chainId?: ChainId) {
 
 // account is optional
 export function getRouterContract(chainId: number, library: Web3Provider, account?: string): Contract {
-  return getContract(
-    getRouterAddress(chainId),
-    IUniswapV2Router02ABI,
-    library,
-    account
-  )
+  return getContract(getRouterAddress(chainId), IUniswapV2Router02ABI, library, account)
 }
 
 export function getArcherRouterContract(chainId: number, library: Web3Provider, account?: string): Contract {

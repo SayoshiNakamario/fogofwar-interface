@@ -1,17 +1,11 @@
-import {
-  ChainId,
-  CurrencyAmount,
-  JSBI,
-  MASTERCHEF_ADDRESS,
-  MASTERCHEF_V2_ADDRESS,
-} from '@mistswapdex/sdk'
+import { ChainId, CurrencyAmount, JSBI, MASTERCHEF_ADDRESS, MASTERCHEF_V2_ADDRESS } from '@fogofwar/sdk'
 import { Chef } from './enum'
 import { NEVER_RELOAD, useSingleCallResult, useSingleContractMultipleData } from '../../state/multicall/hooks'
 import { Dispatch, useCallback, useEffect, useMemo, useState } from 'react'
 import { useMasterChefContract, useMasterChefV2Contract } from '../../hooks/useContract'
 
 import { Contract } from '@ethersproject/contracts'
-import { MIST } from '../../config/tokens'
+import { FOG } from '../../config/tokens'
 import { Zero } from '@ethersproject/constants'
 import concat from 'lodash/concat'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
@@ -88,7 +82,7 @@ export function usePendingSushi(farm) {
 
   const amount = value ? JSBI.BigInt(value.toString()) : undefined
 
-  return amount ? CurrencyAmount.fromRawAmount(MIST[chainId], amount) : undefined
+  return amount ? CurrencyAmount.fromRawAmount(FOG[chainId], amount) : undefined
 }
 
 export function usePendingToken(farm, contract) {

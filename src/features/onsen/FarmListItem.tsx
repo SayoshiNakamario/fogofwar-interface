@@ -1,6 +1,6 @@
 import { classNames, formatNumber, formatPercent } from '../../functions'
 
-import { ZERO } from '@mistswapdex/sdk'
+import { ZERO } from '@fogofwar/sdk'
 import { Disclosure } from '@headlessui/react'
 import DoubleLogo from '../../components/DoubleLogo'
 import FarmListItemDetails from './FarmListItemDetails'
@@ -68,33 +68,31 @@ const FarmListItem = ({ farm, ...rest }) => {
                 </div>
               </div>
               <div className="flex flex-col items-center justify-center">
-                <div className="font-bold text-righttext-high-emphesis">
-                  {formatPercent(farm?.roiPerYear * 100)}
-                </div>
+                <div className="font-bold text-righttext-high-emphesis">{formatPercent(farm?.roiPerYear * 100)}</div>
                 <div className="text-xs text-right md:text-base text-secondary">{i18n._(t`annualized`)}</div>
               </div>
               {pendingSushi && pendingSushi.greaterThan(ZERO) ? (
-                <div className="flex flex-col items-center justify-center md:flex-row space-x-4 font-bold md:flex">
-                  <div className="hidden md:flex items-center space-x-2">
+                <div className="flex flex-col items-center justify-center space-x-4 font-bold md:flex-row md:flex">
+                  <div className="items-center hidden space-x-2 md:flex">
                     <div key="0" className="flex items-center">
                       <Image
-                        src="https://raw.githubusercontent.com/mistswapdex/assets/master/blockchains/smartbch/assets/0x5fA664f69c2A4A3ec94FaC3cBf7049BD9CA73129/logo.png"
+                        src="https://raw.githubusercontent.com/SayoshiNakamario/assets/master/blockchains/smartbch/assets/0xd6589e311D297604884B47c93a93bc05dbfc1Ef7/logo.png"
                         width="30px"
                         height="30px"
                         className="rounded-md"
                         layout="fixed"
-                        alt="MIST"
+                        alt="FOG"
                       />
                     </div>
                   </div>
                   <div className="flex flex-col space-y-1">
                     <div key="0" className="text-xs md:text-sm">
-                      {formatNumber(pendingSushi.toFixed(18))} MIST
+                      {formatNumber(pendingSushi.toFixed(18))} FOG
                     </div>
                   </div>
-              </div>
+                </div>
               ) : (
-                <div className="flex-row items-center justify-center flex pl-3 font-bold text-sm">
+                <div className="flex flex-row items-center justify-center pl-3 text-sm font-bold">
                   {i18n._(t`Stake LP to Farm`)}
                 </div>
               )}

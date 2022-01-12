@@ -40,7 +40,7 @@ function AppBar(): JSX.Element {
             <div className="px-4 py-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <Image src="/logo.png" alt="Mist" width="51px" height="32px" />
+                  <Image src="/logo.png" alt="FOG" width="51px" height="32px" />
                   <div className="hidden sm:block sm:ml-4">
                     <div className="flex space-x-2">
                       <ExternalLink
@@ -80,13 +80,13 @@ function AppBar(): JSX.Element {
                       <>
                         <AddToken
                           imageProps={{ src: '/images/tokens/unknown.png', alt: 'FOW' }}
-                          text={i18n._(t`Add FOW to your MetaMask wallet`)}
+                          text={i18n._(t`Add FOG to your MetaMask wallet`)}
                           metamaskProps={{
                             address: FOG_ADDRESS[chainId],
                             symbol: 'FOG',
                             decimals: 18,
                             image:
-                              'https://raw.githubusercontent.com/mistswapdex/assets/master/blockchains/smartbch/assets/0x0E36C351ff40183435C9Bd1D17bfb1F3548f1963/logo.png',
+                              'https://raw.githubusercontent.com/SayoshiNakamario/assets/master/blockchains/smartbch/assets/0xd6589e311D297604884B47c93a93bc05dbfc1Ef7/logo.png',
                           }}
                         />
                       </>

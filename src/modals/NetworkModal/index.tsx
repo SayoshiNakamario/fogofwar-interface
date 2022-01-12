@@ -2,7 +2,7 @@ import { NETWORK_ICON, NETWORK_LABEL } from '../../config/networks'
 import { useModalOpen, useNetworkModalToggle } from '../../state/application/hooks'
 
 import { ApplicationModal } from '../../state/application/actions'
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 import Image from 'next/image'
 import Modal from '../../components/Modal'
 import ModalHeader from '../../components/ModalHeader'
@@ -61,8 +61,8 @@ export default function NetworkModal(): JSX.Element | null {
     <Modal isOpen={networkModalOpen} onDismiss={toggleNetworkModal} maxWidth={672}>
       <ModalHeader onClose={toggleNetworkModal} title={i18n._(t`Select a Network`)} />
       <div className="mb-6 text-lg text-primary">
-        You are currently browsing <span className="font-bold text-pink">MIST</span>
-        <br /> on the <span className="font-bold text-blue">{NETWORK_LABEL[chainId]}</span> network
+        You are currently browsing <span className="font-bold text-blue">FOG</span>
+        <br /> on the <span className="font-bold text-green">{NETWORK_LABEL[chainId]}</span> network
       </div>
 
       <div className="grid grid-flow-row-dense grid-cols-1 gap-5 overflow-y-auto md:grid-cols-2">

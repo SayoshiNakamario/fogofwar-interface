@@ -13,12 +13,12 @@ import {
   transactionsQuery,
 } from '../queries'
 
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 import { GRAPH_HOST } from '../constants'
 import { pager } from './'
 
 export const EXCHANGE = {
-  [ChainId.SMARTBCH]: 'mistswap/exchange',
+  [ChainId.SMARTBCH]: 'fogofwar/exchange',
 }
 
 export const exchange = async (chainId = ChainId.SMARTBCH, query, variables = {}) =>
@@ -161,6 +161,13 @@ export const getAvaxPrice = async (variables = undefined) => {
 export const getMistPrice = async (variables = {}) => {
   return getTokenPrice(ChainId.SMARTBCH, tokenPriceQuery, {
     id: '0x5fa664f69c2a4a3ec94fac3cbf7049bd9ca73129',
+    ...variables,
+  })
+}
+
+export const getFOGPrice = async (variables = {}) => {
+  return getTokenPrice(ChainId.SMARTBCH, tokenPriceQuery, {
+    id: '0xd6589e311D297604884B47c93a93bc05dbfc1Ef7',
     ...variables,
   })
 }
