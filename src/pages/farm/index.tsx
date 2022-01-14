@@ -243,7 +243,7 @@ export default function Farm(): JSX.Element {
 
       const defaultReward = {
         token: 'FOG',
-        icon: 'https://raw.githubusercontent.com/mistswapdex/assets/master/blockchains/smartbch/assets/0xd6589e311D297604884B47c93a93bc05dbfc1Ef7/logo.png',
+        icon: 'https://raw.githubusercontent.com/SayoshiNakamario/assets/master/blockchains/smartbch/assets/0xd6589e311D297604884B47c93a93bc05dbfc1Ef7/logo.png',
         rewardPerBlock,
         rewardPerDay: rewardPerBlock * blocksPerDay,
         rewardPrice: +FOGPriceUSD,
