@@ -27,10 +27,15 @@ import { getAddress } from '@ethersproject/address'
 import useFarmRewards from '../../hooks/useFarmRewards'
 import usePool from '../../hooks/usePool'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
-import { usePositions, usePendingSushi } from '../../features/onsen/hooks'
+import { usePositions, usePendingFOG } from '../../features/onsen/hooks'
 import { useRouter } from 'next/router'
 import { updateUserFarmFilter } from '../../state/user/actions'
 import { getFarmFilter, useUpdateFarmFilter } from '../../state/user/hooks'
+import { useWeb3React } from '@web3-react/core'
+import Web3Connect from '../../components/Web3Connect'
+import Web3Network from '../../components/Web3Network'
+import { EtherscanProvider } from '@ethersproject/providers'
+import Web3Status from '../../components/Web3Status'
 
 export default function Farm(): JSX.Element {
   const { chainId } = useActiveWeb3React()
@@ -51,45 +56,57 @@ export default function Farm(): JSX.Element {
     [ChainId.SMARTBCH]: {
       '0x674A71E69fe8D5cCff6fdcF9F1Fa4262Aa14b154': {
         farmId: 7,
-        allocPoint: 314847489,
+        allocPoint: 100000,
+        mistallocPoint: 0,
         token0: FOG[ChainId.SMARTBCH],
         token1: WBCH[ChainId.SMARTBCH],
       },
       '0x437E444365aD9ed788e8f255c908bceAd5AEA645': {
         farmId: 8,
-        allocPoint: 57663568,
+        allocPoint: 100000,
+        mistallocPoint: 0,
         token0: FOG[ChainId.SMARTBCH],
         token1: FLEXUSD,
       },
-      '0x80F712670d268cf2C05e7162674c7466c940eBE3': {
+      '0xEA5038043364830c489D7fd8F95eFE35eaE6f4Ff': {
         farmId: 0,
-        allocPoint: 56352041,
-        token0: new Token(ChainId.SMARTBCH, '0x77CB87b57F54667978Eb1B199b28a0db8C8E1c0B', 18, 'EBEN', 'Green Ben'),
+        allocPoint: 100000,
+        mistallocPoint: 8511556,
+        token0: new Token(
+          ChainId.SMARTBCH,
+          '0x2b591190FF951F60CB9424664155e57A402c1AdE',
+          18,
+          '🌙🌙🌙🌙',
+          'MoonMoonMoonMoon'
+        ),
         token1: WBCH[ChainId.SMARTBCH],
       },
       '0x24f011f12Ea45AfaDb1D4245bA15dCAB38B43D13': {
         farmId: 1,
-        allocPoint: 209238939,
+        allocPoint: 100000,
+        mistallocPoint: 243043661,
         token0: FLEXUSD,
         token1: WBCH[ChainId.SMARTBCH],
       },
       '0x4fF52e9D7824EC9b4e0189F11B5aA0F02b459b03': {
         farmId: 2,
-        allocPoint: 17931430,
+        allocPoint: 100000,
+        mistallocPoint: 14875963,
         token0: new Token(ChainId.SMARTBCH, '0x98Dd7eC28FB43b3C4c770AE532417015fa939Dd3', 18, 'FLEX', 'FLEX Coin'),
         token1: FLEXUSD,
       },
       '0xc47B0B4B51EE06De0daF02517D78f0473B776633': {
         farmId: 9,
-        allocPoint: 75190888,
+        allocPoint: 100000,
+        mistallocPoint: 77570410,
         token0: new Token(ChainId.SMARTBCH, '0x265bD28d79400D55a1665707Fa14A72978FA6043', 2, 'CATS', 'CashCats'),
         token1: WBCH[ChainId.SMARTBCH],
       },
     },
     [ChainId.SMARTBCH_AMBER]: {
       '0x07DE6fc05597E0E4c92C83637A8a0CA411f3a769': {
-        farmId: 0,
-        allocPoint: 1000,
+        farmId: 666,
+        allocPoint: 0,
         token0: WBCH[ChainId.SMARTBCH_AMBER],
         token1: new Token(ChainId.SMARTBCH_AMBER, '0xC6F80cF669Ab9e4BE07B78032b4821ed5612A9ce', 18, 'sc', 'testcoin2'),
       },
@@ -126,6 +143,7 @@ export default function Farm(): JSX.Element {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       pool: usePool(pairAddress),
       allocPoint: pair.allocPoint,
+      mistallocPoint: pair.mistallocPoint,
       balance: '1000000000000000000',
       chef: 0,
       id: pair.farmId,
@@ -139,7 +157,7 @@ export default function Farm(): JSX.Element {
       userCount: 1,
     }
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    f.pendingSushi = usePendingSushi(f)
+    f.pendingSushi = usePendingFOG(f)
     f.pending = Number.parseFloat(f.pendingSushi?.toFixed())
 
     farms.push(f)
@@ -147,13 +165,22 @@ export default function Farm(): JSX.Element {
 
   farms = farms.sort((a, b) => b.allocPoint - a.allocPoint)
 
+  const flexUSDMISTPool = farms.find((v) => v.pair === '0x437E444365aD9ed788e8f255c908bceAd5AEA645').pool
   const flexUSDFOGPool = farms.find((v) => v.pair === '0x437E444365aD9ed788e8f255c908bceAd5AEA645').pool
   const bchFlexUSDPool = farms.find((v) => v.pair === '0x24f011f12Ea45AfaDb1D4245bA15dCAB38B43D13').pool
   let bchPriceUSD = 0
+  let MISTPriceUSD = 0
   let FOGPriceUSD = 0
+
   if (bchFlexUSDPool.reserves) {
     bchPriceUSD =
       Number.parseFloat(bchFlexUSDPool.reserves[1].toFixed()) / Number.parseFloat(bchFlexUSDPool.reserves[0].toFixed())
+  }
+  if (flexUSDMISTPool.reserves) {
+    MISTPriceUSD =
+      1 /
+      (Number.parseFloat(flexUSDMISTPool.reserves[0].toFixed()) /
+        Number.parseFloat(flexUSDMISTPool.reserves[1].toFixed()))
   }
   if (flexUSDFOGPool.reserves) {
     FOGPriceUSD =
@@ -240,13 +267,20 @@ export default function Farm(): JSX.Element {
         masterChefV1SushiPerBlock
 
       const rewardPerBlock = (pool.allocPoint / pool.owner.totalAllocPoint) * sushiPerBlock
+      const mistrewardPerBlock = (pool.mistallocPoint / pool.owner.totalAllocPoint) * sushiPerBlock
 
       const defaultReward = {
         token: 'FOG',
         icon: 'https://raw.githubusercontent.com/SayoshiNakamario/assets/master/blockchains/smartbch/assets/0xd6589e311D297604884B47c93a93bc05dbfc1Ef7/logo.png',
         rewardPerBlock,
         rewardPerDay: rewardPerBlock * blocksPerDay,
-        rewardPrice: +FOGPriceUSD,
+        rewardPrice: +MISTPriceUSD,
+        misttoken: 'MIST',
+        misticon:
+          'https://raw.githubusercontent.com/SayoshiNakamario/assets/master/blockchains/smartbch/assets/0x5fA664f69c2A4A3ec94FaC3cBf7049BD9CA73129/logo.png',
+        mistrewardPerBlock,
+        mistrewardPerDay: mistrewardPerBlock * blocksPerDay,
+        mistrewardPrice: +MISTPriceUSD,
       }
 
       const defaultRewards = [defaultReward]
@@ -263,7 +297,12 @@ export default function Farm(): JSX.Element {
         return previousValue + currentValue.rewardPerBlock * currentValue.rewardPrice
       }, 0) / pool.tvl
 
-    const roiPerDay = roiPerBlock * blocksPerDay
+    const mistroiPerBlock =
+      rewards.reduce((previousValue, currentValue) => {
+        return previousValue + currentValue.mistrewardPerBlock * currentValue.mistrewardPrice
+      }, 0) / pool.tvl
+
+    const roiPerDay = roiPerBlock * blocksPerDay + mistroiPerBlock * blocksPerDay
 
     const roiPerYear = roiPerDay * 365
 

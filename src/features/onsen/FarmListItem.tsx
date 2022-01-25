@@ -10,14 +10,15 @@ import React from 'react'
 import { useLingui } from '@lingui/react'
 import { t } from '@lingui/macro'
 import { useCurrency } from '../../hooks/Tokens'
-import { usePendingSushi, useUserInfo } from './hooks'
+import { usePendingFOG, useUserInfo } from './hooks'
 import { isMobile } from 'react-device-detect'
 
 const FarmListItem = ({ farm, ...rest }) => {
   const token0 = useCurrency(farm.pair.token0.id)
   const token1 = useCurrency(farm.pair.token1.id)
 
-  const pendingSushi = usePendingSushi(farm)
+  // const pendingSushi = usePendingSushi(farm)
+  const pendingFOG = usePendingFOG(farm)
 
   const { i18n } = useLingui()
 
@@ -56,6 +57,14 @@ const FarmListItem = ({ farm, ...rest }) => {
                         layout="fixed"
                         alt={reward.token}
                       />
+                      <Image
+                        src={reward.misticon}
+                        width="30px"
+                        height="30px"
+                        className="rounded-md"
+                        layout="fixed"
+                        alt={reward.misttoken}
+                      />
                     </div>
                   ))}
                 </div>
@@ -63,6 +72,8 @@ const FarmListItem = ({ farm, ...rest }) => {
                   {farm?.rewards?.map((reward, i) => (
                     <div key={i} className="text-xs md:text-sm whitespace-nowrap">
                       {formatNumber(reward.rewardPerDay)} {reward.token} / {i18n._(t`DAY`)}
+                      <br></br>
+                      {formatNumber(reward.mistrewardPerDay)} {reward.misttoken} / {i18n._(t`DAY`)}
                     </div>
                   ))}
                 </div>
@@ -71,7 +82,7 @@ const FarmListItem = ({ farm, ...rest }) => {
                 <div className="font-bold text-righttext-high-emphesis">{formatPercent(farm?.roiPerYear * 100)}</div>
                 <div className="text-xs text-right md:text-base text-secondary">{i18n._(t`annualized`)}</div>
               </div>
-              {pendingSushi && pendingSushi.greaterThan(ZERO) ? (
+              {pendingFOG && pendingFOG.greaterThan(ZERO) ? (
                 <div className="flex flex-col items-center justify-center space-x-4 font-bold md:flex-row md:flex">
                   <div className="items-center hidden space-x-2 md:flex">
                     <div key="0" className="flex items-center">
@@ -87,7 +98,9 @@ const FarmListItem = ({ farm, ...rest }) => {
                   </div>
                   <div className="flex flex-col space-y-1">
                     <div key="0" className="text-xs md:text-sm">
-                      {formatNumber(pendingSushi.toFixed(18))} FOG
+                      {formatNumber(pendingFOG.toFixed(18))} FOG
+                      <br></br>
+                      {formatNumber(pendingFOG.toFixed(18))} MIST
                     </div>
                   </div>
                 </div>

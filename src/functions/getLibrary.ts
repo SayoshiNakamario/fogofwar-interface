@@ -1,9 +1,8 @@
 import { ExternalProvider, JsonRpcFetchFunc, Web3Provider } from '@ethersproject/providers'
 
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 
-const NETWORK_POLLING_INTERVALS: { [chainId: number]: number } = {
-}
+const NETWORK_POLLING_INTERVALS: { [chainId: number]: number } = {}
 
 export default function getLibrary(provider: any): Web3Provider {
   const library = new Web3Provider(

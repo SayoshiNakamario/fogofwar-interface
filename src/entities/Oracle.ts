@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@mistswapdex/sdk'
+import { ChainId, Token } from '@fogofwar/sdk'
 
 import { AddressZero } from '@ethersproject/constants'
 import { CHAINLINK_PRICE_FEED_MAP } from '../config/oracles/chainlink'
@@ -121,7 +121,7 @@ function lowerEqual(value1: string, value2: string) {
 
 export function getOracle(pair, chainId: ChainId, tokens): Oracle {
   // if (lowerEqual(pair.oracle, CHAINLINK_ORACLE_ADDRESS[chainId])) {
-  if (lowerEqual(pair.oracle, "")) {
+  if (lowerEqual(pair.oracle, '')) {
     return new ChainlinkOracle(pair, chainId, tokens)
   }
 }

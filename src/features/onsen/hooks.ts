@@ -76,7 +76,28 @@ export function usePendingSushi(farm) {
     return [String(farm.id), String(account)]
   }, [farm, account])
 
-  const result = useSingleCallResult(args ? contract : null, 'pendingSushi', args)?.result
+  const result = useSingleCallResult(args ? contract : null, 'pendingMist', args)?.result
+
+  const value = result?.[0]
+
+  const amount = value ? JSBI.BigInt(value.toString()) : undefined
+
+  return amount ? CurrencyAmount.fromRawAmount(FOG[chainId], amount) : undefined
+}
+
+export function usePendingFOG(farm) {
+  const { account, chainId } = useActiveWeb3React()
+
+  const contract = useChefContract(farm.chef)
+
+  const args = useMemo(() => {
+    if (!account) {
+      return
+    }
+    return [String(farm.id), String(account)]
+  }, [farm, account])
+
+  const result = useSingleCallResult(args ? contract : null, 'pendingFOG', args)?.result
 
   const value = result?.[0]
 
@@ -104,6 +125,55 @@ export function usePendingToken(farm, contract) {
   return useMemo(() => pendingTokens, [pendingTokens])
 }
 
+export function useChefPositionsMist(contract?: Contract | null, rewarder?: Contract | null, chainId = undefined) {
+  const { account } = useActiveWeb3React()
+
+  const numberOfPools = useSingleCallResult(contract ? contract : null, 'poolLength', undefined, NEVER_RELOAD)
+    ?.result?.[0]
+
+  const args = useMemo(() => {
+    if (!account || !numberOfPools) {
+      return
+    }
+    return [...Array(numberOfPools.toNumber()).keys()].map((pid) => [String(pid), String(account)])
+  }, [numberOfPools, account])
+
+  const pendingSushi = useSingleContractMultipleData(args ? contract : null, 'pendingMist', args)
+
+  const userInfo = useSingleContractMultipleData(args ? contract : null, 'userInfo', args)
+
+  // const pendingTokens = useSingleContractMultipleData(
+  //     rewarder,
+  //     'pendingTokens',
+  //     args.map((arg) => [...arg, '0'])
+  // )
+
+  const getChef = useCallback(() => {
+    if (MASTERCHEF_ADDRESS[chainId] === contract.address) {
+      return Chef.MASTERCHEF
+    } else if (MASTERCHEF_V2_ADDRESS[chainId] === contract.address) {
+      return Chef.MASTERCHEF_V2
+    }
+  }, [chainId, contract])
+
+  return useMemo(() => {
+    if (!pendingSushi || !userInfo) {
+      return []
+    }
+    return zip(pendingSushi, userInfo)
+      .map((data, i) => ({
+        id: args[i][0],
+        pendingSushi: data[0].result?.[0] || Zero,
+        amount: data[1].result?.[0] || Zero,
+        chef: getChef(),
+        // pendingTokens: data?.[2]?.result,
+      }))
+      .filter(({ pendingSushi, amount }) => {
+        return (pendingSushi && !pendingSushi.isZero()) || (amount && !amount.isZero())
+      })
+  }, [args, getChef, pendingSushi, userInfo])
+}
+
 export function useChefPositions(contract?: Contract | null, rewarder?: Contract | null, chainId = undefined) {
   const { account } = useActiveWeb3React()
 
@@ -117,7 +187,7 @@ export function useChefPositions(contract?: Contract | null, rewarder?: Contract
     return [...Array(numberOfPools.toNumber()).keys()].map((pid) => [String(pid), String(account)])
   }, [numberOfPools, account])
 
-  const pendingSushi = useSingleContractMultipleData(args ? contract : null, 'pendingSushi', args)
+  const pendingSushi = useSingleContractMultipleData(args ? contract : null, 'pendingFOG', args)
 
   const userInfo = useSingleContractMultipleData(args ? contract : null, 'userInfo', args)
 

@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@mistswapdex/sdk'
+import { ChainId, Token } from '@fogofwar/sdk'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { formatPercent, maxAmountSpend, tryParseAmount } from '../../../functions'
 import { useAllTokens, useCurrency } from '../../../hooks/Tokens'
@@ -215,10 +215,7 @@ function LimitOrder() {
     <Container id="limit-order-page" className="py-4 space-y-6 md:py-8 lg:py-12" maxWidth="2xl">
       <Head>
         <title>{i18n._(t`Limit order`)} | Mist</title>
-        <meta
-          name="description"
-          content="MISTswap allows for swapping of SEP20 compatible tokens"
-        />
+        <meta name="description" content="MISTswap allows for swapping of SEP20 compatible tokens" />
       </Head>
       <TokenWarningModal
         isOpen={importTokensNotInDefault.length > 0 && !dismissTokenWarning}

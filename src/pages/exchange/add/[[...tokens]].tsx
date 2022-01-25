@@ -1,7 +1,7 @@
 import { ApprovalState, useApproveCallback } from '../../../hooks/useApproveCallback'
 import { AutoRow, RowBetween } from '../../../components/Row'
 import Button, { ButtonError } from '../../../components/Button'
-import { Currency, CurrencyAmount, Percent, WNATIVE, currencyEquals } from '@mistswapdex/sdk'
+import { Currency, CurrencyAmount, Percent, WNATIVE, currencyEquals } from '@fogofwar/sdk'
 import { ONE_BIPS, ZERO_PERCENT } from '../../../constants'
 import React, { useCallback, useState } from 'react'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../../modals/TransactionConfirmationModal'
@@ -188,13 +188,13 @@ export default function Add() {
       const estimatedGasLimit = await estimate(...args, {
         ...(value ? { value } : {}),
         gasPrice: getGasPrice(),
-      });
+      })
 
       const response = await method(...args, {
         ...(value ? { value } : {}),
         gasLimit: calculateGasMargin(estimatedGasLimit),
         gasPrice: getGasPrice(),
-      });
+      })
 
       setAttemptingTxn(false)
 
@@ -207,7 +207,7 @@ export default function Add() {
       })
 
       setTxHash(response.hash)
-    } catch(error) {
+    } catch (error) {
       setAttemptingTxn(false)
       // we only care if the error is something _other_ than the user rejected the tx
       if (error?.code !== 4001) {

@@ -413,30 +413,6 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_pid",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      }
-    ],
-    "name": "pendingMist",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
         "name": "",
         "type": "uint256"
       }
@@ -666,19 +642,6 @@
       }
     ],
     "name": "withdraw",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_pid",
-        "type": "uint256"
-      }
-    ],
-    "name": "withdrawAllFromMist",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

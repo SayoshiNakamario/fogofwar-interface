@@ -1,4 +1,4 @@
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 
 export type ChainlinkPriceFeedMap = {
   readonly [address: string]: {
@@ -14,5 +14,4 @@ export type ChainlinkPriceFeedMap = {
 
 export const CHAINLINK_PRICE_FEED_MAP: {
   [chainId in ChainId]?: ChainlinkPriceFeedMap
-} = {
-}
+} = {}

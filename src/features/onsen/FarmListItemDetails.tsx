@@ -3,7 +3,7 @@ import { ChainId, CurrencyAmount, JSBI, MASTERCHEF_ADDRESS, MASTERCHEF_V2_ADDRES
 import { Chef, PairType } from './enum'
 import { Disclosure, Transition } from '@headlessui/react'
 import React, { useState } from 'react'
-import { usePendingSushi, useUserInfo } from './hooks'
+import { usePendingFOG, useUserInfo } from './hooks'
 
 import Button from '../../components/Button'
 import Dots from '../../components/Dots'
@@ -21,6 +21,9 @@ import { useTransactionAdder } from '../../state/transactions/hooks'
 import { BigNumber } from '@ethersproject/bignumber'
 import { isMobile } from 'react-device-detect'
 import { useRouter } from 'next/router'
+
+const lockTime = 0
+const nftTokenID = 0
 
 const FarmListItem = ({ farm }) => {
   const { i18n } = useLingui()
@@ -48,7 +51,7 @@ const FarmListItem = ({ farm }) => {
   // TODO: Replace these
   const amount = useUserInfo(farm, liquidityToken)
 
-  const pendingSushi = usePendingSushi(farm)
+  const pendingSushi = usePendingFOG(farm)
 
   const reward = usePendingReward(farm)
 

@@ -1,4 +1,4 @@
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 import NavLink from '../../components/NavLink'
 import React from 'react'
 import { t } from '@lingui/macro'
@@ -19,26 +19,26 @@ const Menu = ({ positionsLength }) => {
           href={`/farm?filter=portfolio`}
           activeClassName="font-bold bg-transparent border rounded text-high-emphesis border-transparent border-gradient-r-blue-pink-dark-900"
         >
-          <a className="flex items-center justify-between px-2 py-3 md:px-4 md:py-6 text-base font-bold border border-transparent rounded cursor-pointer bg-dark-900 hover:bg-dark-800">
+          <a className="flex items-center justify-between px-2 py-3 text-base font-bold border border-transparent rounded cursor-pointer md:px-4 md:py-6 bg-dark-900 hover:bg-dark-800">
             Your Farms
           </a>
         </NavLink>
       ) : (
         <a
-          className="striped-background text-secondary flex items-center justify-between px-2 py-3 md:px-4 md:py-6 text-base font-bold border border-transparent rounded cursor-pointer bg-dark-900 hover:bg-dark-800"
+          className="flex items-center justify-between px-2 py-3 text-base font-bold border border-transparent rounded cursor-pointer striped-background text-secondary md:px-4 md:py-6 bg-dark-900 hover:bg-dark-800"
           onClick={toggleWalletModal}
         >
           Your Farms
         </a>
       )}
 
-      <div className="hidden md:block w-full h-0 font-bold bg-transparent border border-b-0 border-transparent rounded text-high-emphesis md:border-gradient-r-blue-pink-dark-800 opacity-20" />
+      <div className="hidden w-full h-0 font-bold bg-transparent border border-b-0 border-transparent rounded md:block text-high-emphesis md:border-gradient-r-blue-pink-dark-800 opacity-20" />
 
       <NavLink
         href="/farm?filter=all"
         activeClassName="font-bold bg-transparent border rounded text-high-emphesis border-transparent border-gradient-r-blue-pink-dark-900"
       >
-        <a className="flex items-center justify-between px-2 py-3 md:px-4 md:py-6 text-base font-bold border border-transparent rounded cursor-pointer bg-dark-900 hover:bg-dark-800">
+        <a className="flex items-center justify-between px-2 py-3 text-base font-bold border border-transparent rounded cursor-pointer md:px-4 md:py-6 bg-dark-900 hover:bg-dark-800">
           {i18n._(t`All Farms`)}
         </a>
       </NavLink>
@@ -47,7 +47,7 @@ const Menu = ({ positionsLength }) => {
         href="/farm?filter=past"
         activeClassName="font-bold bg-transparent border rounded text-high-emphesis border-transparent border-gradient-r-blue-pink-dark-900"
       >
-        <a className="flex items-center justify-between px-2 py-3 md:px-4 md:py-6 text-base font-bold border border-transparent rounded cursor-pointer bg-dark-900 hover:bg-dark-800">
+        <a className="flex items-center justify-between px-2 py-3 text-base font-bold border border-transparent rounded cursor-pointer md:px-4 md:py-6 bg-dark-900 hover:bg-dark-800">
           {i18n._(t`Past Farms`)}
         </a>
       </NavLink>
@@ -59,7 +59,7 @@ const Menu = ({ positionsLength }) => {
             href={`/farm?filter=kashi`}
             activeClassName="font-bold bg-transparent border rounded text-high-emphesis border-transparent border-gradient-r-blue-pink-dark-900"
           >
-            <a className="flex items-center justify-between px-2 py-3 md:px-4 md:py-6 text-base font-bold border border-transparent rounded cursor-pointer bg-dark-900 hover:bg-dark-800">
+            <a className="flex items-center justify-between px-2 py-3 text-base font-bold border border-transparent rounded cursor-pointer md:px-4 md:py-6 bg-dark-900 hover:bg-dark-800">
               Kashi Farms
             </a>
           </NavLink>
@@ -68,7 +68,7 @@ const Menu = ({ positionsLength }) => {
             href={`/farm?filter=sushi`}
             activeClassName="font-bold bg-transparent border rounded text-high-emphesis border-transparent border-gradient-r-blue-pink-dark-900"
           >
-            <a className="flex items-center justify-between px-2 py-3 md:px-4 md:py-6 text-base font-bold border border-transparent rounded cursor-pointer bg-dark-900 hover:bg-dark-800">
+            <a className="flex items-center justify-between px-2 py-3 text-base font-bold border border-transparent rounded cursor-pointer md:px-4 md:py-6 bg-dark-900 hover:bg-dark-800">
               MISTswap Farms
             </a>
           </NavLink>
@@ -81,12 +81,12 @@ const Menu = ({ positionsLength }) => {
           href={`/farm?filter=2x`}
           activeClassName="bg-transparent border rounded text-high-emphesis border-transparent border-gradient-r-blue-pink-dark-900"
         >
-          <a className="flex items-center justify-between px-2 py-3 md:px-4 md:py-6 text-base font-bold border border-transparent rounded cursor-pointer bg-dark-900 hover:bg-dark-800">
+          <a className="flex items-center justify-between px-2 py-3 text-base font-bold border border-transparent rounded cursor-pointer md:px-4 md:py-6 bg-dark-900 hover:bg-dark-800">
             2x Reward Farms
           </a>
         </NavLink>
       )*/}
-      <div className="md:hidden w-full h-0 font-bold bg-transparent border border-b-0 border-transparent rounded text-high-emphesis md:border-gradient-r-blue-pink-dark-800 opacity-20" />
+      <div className="w-full h-0 font-bold bg-transparent border border-b-0 border-transparent rounded md:hidden text-high-emphesis md:border-gradient-r-blue-pink-dark-800 opacity-20" />
     </div>
   )
 }

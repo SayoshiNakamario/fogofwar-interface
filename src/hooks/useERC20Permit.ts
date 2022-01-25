@@ -1,5 +1,5 @@
-import { ChainId, Currency, CurrencyAmount, JSBI, Percent, Token, TradeType, Trade as V2Trade } from '@mistswapdex/sdk'
-import { MIST } from '../config/tokens'
+import { ChainId, Currency, CurrencyAmount, JSBI, Percent, Token, TradeType, Trade as V2Trade } from '@fogofwar/sdk'
+import { FOG } from '../config/tokens'
 import { useMemo, useState } from 'react'
 
 import { splitSignature } from '@ethersproject/bytes'
@@ -31,10 +31,10 @@ const PERMITTABLE_TOKENS: {
   }
 } = {
   [ChainId.SMARTBCH]: {
-    [MIST[ChainId.SMARTBCH].address]: { type: PermitType.AMOUNT, name: 'MistToken' },
+    [FOG[ChainId.SMARTBCH].address]: { type: PermitType.AMOUNT, name: 'FOGToken' },
   },
   [ChainId.SMARTBCH_AMBER]: {
-    [MIST[ChainId.SMARTBCH_AMBER].address]: { type: PermitType.AMOUNT, name: 'MistToken' },
+    [FOG[ChainId.SMARTBCH_AMBER].address]: { type: PermitType.AMOUNT, name: 'FOGToken' },
   },
 }
 

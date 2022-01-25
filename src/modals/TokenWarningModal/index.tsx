@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 
 import { ImportToken } from '../SearchModal/ImportToken'
 import Modal from '../../components/Modal'
-import { Token } from '@mistswapdex/sdk'
+import { Token } from '@fogofwar/sdk'
 
 export default function TokenWarningModal({
   isOpen,
@@ -14,7 +14,7 @@ export default function TokenWarningModal({
   onConfirm: () => void
 }) {
   const handleDismiss = useCallback(() => {
-      window.location.href = "/"
+    window.location.href = '/'
   }, [])
 
   return (

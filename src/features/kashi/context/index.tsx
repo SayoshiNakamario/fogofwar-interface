@@ -7,7 +7,7 @@ import {
   FLEXUSD_ADDRESS,
   WNATIVE,
   WNATIVE_ADDRESS,
-} from '@mistswapdex/sdk'
+} from '@fogofwar/sdk'
 import React, { createContext, useCallback, useContext, useEffect, useReducer } from 'react'
 import { ZERO, e10, maximum, minimum } from '../../../functions/math'
 import {
@@ -126,8 +126,8 @@ async function getPairs(bentoBoxContract, chainId: ChainId) {
   let success = false
   const masterAddress = KASHI_ADDRESS[chainId]
   // if (chainId !== ChainId.BSC && chainId !== ChainId.MATIC) {
-    logs = await bentoBoxContract.queryFilter(bentoBoxContract.filters.LogDeploy(masterAddress))
-    success = true
+  logs = await bentoBoxContract.queryFilter(bentoBoxContract.filters.LogDeploy(masterAddress))
+  success = true
   // }
   if (!success) {
     logs = (
@@ -218,7 +218,9 @@ export function KashiProvider({ children }) {
     if (
       !account ||
       !chainId ||
-      ![/*ChainId.MAINNET, ChainId.KOVAN, ChainId.BSC, ChainId.MATIC, ChainId.XDAI, ChainId.ARBITRUM*/].includes(chainId)
+      ![
+        /*ChainId.MAINNET, ChainId.KOVAN, ChainId.BSC, ChainId.MATIC, ChainId.XDAI, ChainId.ARBITRUM*/
+      ].includes(chainId)
     ) {
       return
     }

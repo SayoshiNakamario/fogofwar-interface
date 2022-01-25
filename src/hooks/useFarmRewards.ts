@@ -12,7 +12,7 @@ import {
   useSushiPrice,
 } from '../services/graph'
 
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 import { getAddress } from '@ethersproject/address'
 import useActiveWeb3React from './useActiveWeb3React'
 import { useMemo } from 'react'
@@ -68,16 +68,31 @@ export default function useFarmRewards() {
         masterChefV1SushiPerBlock
 
       const rewardPerBlock = (pool.allocPoint / pool.owner.totalAllocPoint) * sushiPerBlock
+      const fogrewardPerBlock = (pool.allocPoint / pool.owner.totalAllocPoint) * sushiPerBlock
 
       const defaultReward = {
         token: 'MIST',
-        icon: 'https://raw.githubusercontent.com/mistswapdex/icons/master/token/sushi.jpg',
+        icon: 'https://raw.githubusercontent.com/SayoshiNakamario/icons/master/token/mist.jpg',
+        rewardPerBlock,
+        rewardPerDay: rewardPerBlock * blocksPerDay,
+        rewardPrice: sushiPrice,
+      }
+      const fogReward = {
+        token: 'FOG',
+        icon: 'https://raw.githubusercontent.com/SayoshiNakamario/icons/master/token/unknown.png',
         rewardPerBlock,
         rewardPerDay: rewardPerBlock * blocksPerDay,
         rewardPrice: sushiPrice,
       }
 
-      let rewards = [defaultReward]
+      // let rewards = [defaultReward]
+      let rewards: {
+        token: string
+        icon: string
+        rewardPerBlock: number
+        rewardPerDay: number
+        rewardPrice: number
+      }[] = [defaultReward, fogReward]
 
       if (pool.chef === Chef.MASTERCHEF_V2) {
         // override for mcv2...

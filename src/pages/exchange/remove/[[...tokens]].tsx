@@ -2,7 +2,7 @@ import { ApprovalState, useApproveCallback } from '../../../hooks/useApproveCall
 import { ArrowDown, Plus } from 'react-feather'
 import { AutoRow, RowBetween } from '../../../components/Row'
 import { ButtonConfirmed, ButtonError } from '../../../components/Button'
-import { ChainId, Currency, NATIVE, Percent, WNATIVE, WNATIVE_ADDRESS } from '@mistswapdex/sdk'
+import { ChainId, Currency, NATIVE, Percent, WNATIVE, WNATIVE_ADDRESS } from '@fogofwar/sdk'
 import React, { useCallback, useMemo, useState } from 'react'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../../modals/TransactionConfirmationModal'
 import { calculateGasMargin, calculateSlippageAmount, getGasPrice } from '../../../functions/trade'
@@ -293,49 +293,48 @@ export default function Remove() {
   // const isArgentWallet = useIsArgentWallet();
 
   async function onAttemptToApprove() {
-    if (!pairContract || !pair || !library || !deadline)
-      throw new Error("missing dependencies");
-    const liquidityAmount = parsedAmounts[Field.LIQUIDITY];
-    if (!liquidityAmount) throw new Error("missing liquidity amount");
+    if (!pairContract || !pair || !library || !deadline) throw new Error('missing dependencies')
+    const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
+    if (!liquidityAmount) throw new Error('missing liquidity amount')
 
     // try to gather a signature for permission
-    const nonce = await pairContract.nonces(account);
+    const nonce = await pairContract.nonces(account)
 
     const EIP712Domain = [
-      { name: "name", type: "string" },
-      { name: "version", type: "string" },
-      { name: "chainId", type: "uint256" },
-      { name: "verifyingContract", type: "address" },
-    ];
+      { name: 'name', type: 'string' },
+      { name: 'version', type: 'string' },
+      { name: 'chainId', type: 'uint256' },
+      { name: 'verifyingContract', type: 'address' },
+    ]
     const domain = {
-      name: "MISTswap LP Token",
-      version: "1",
+      name: 'MISTswap LP Token',
+      version: '1',
       chainId: chainId,
       verifyingContract: pair.liquidityToken.address,
-    };
+    }
     const Permit = [
-      { name: "owner", type: "address" },
-      { name: "spender", type: "address" },
-      { name: "value", type: "uint256" },
-      { name: "nonce", type: "uint256" },
-      { name: "deadline", type: "uint256" },
-    ];
+      { name: 'owner', type: 'address' },
+      { name: 'spender', type: 'address' },
+      { name: 'value', type: 'uint256' },
+      { name: 'nonce', type: 'uint256' },
+      { name: 'deadline', type: 'uint256' },
+    ]
     const message = {
       owner: account,
       spender: routerContract.address,
       value: liquidityAmount.toFixed(),
       nonce: nonce.toHexString(),
       deadline: deadline.toNumber(),
-    };
+    }
     const data = JSON.stringify({
       types: {
         EIP712Domain,
         Permit,
       },
       domain,
-      primaryType: "Permit",
+      primaryType: 'Permit',
       message,
-    });
+    })
 
     /*
     library
@@ -356,7 +355,7 @@ export default function Remove() {
         }
       });
     */
-    approveCallback();
+    approveCallback()
   }
 
   // // wrapped onUserInput to clear signatures

@@ -6,6 +6,7 @@ import { Zero } from '@ethersproject/constants'
 import { useCallback } from 'react'
 import { useChefContract } from './hooks'
 import { getGasPrice } from '../../functions/trade'
+import Web3Connect from '../../components/Web3Connect'
 
 export default function useMasterChef(chef: Chef) {
   const { account } = useActiveWeb3React()
@@ -23,10 +24,12 @@ export default function useMasterChef(chef: Chef) {
         if (chef === Chef.MASTERCHEF) {
           tx = await contract?.deposit(pid, amount, {
             gasPrice: getGasPrice(),
+            gasLimit: 300000,
           })
         } else {
           tx = await contract?.deposit(pid, amount, account, {
             gasPrice: getGasPrice(),
+            gasLimit: 300000,
           })
         }
 

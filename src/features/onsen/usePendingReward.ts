@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useCloneRewarderContract, useComplexRewarderContract } from '../../hooks/useContract'
 
 import { BigNumber } from '@ethersproject/bignumber'
-import { ChainId } from '@mistswapdex/sdk'
+import { ChainId } from '@fogofwar/sdk'
 import { Chef } from './enum'
 import Fraction from '../../entities/Fraction'
 import { getContract } from '../../functions'
@@ -63,13 +63,7 @@ const usePending = (farm) => {
       }
     }
     // id = 0 is evaluated as false
-    if (
-      account &&
-      cloneRewarder &&
-      farm &&
-      library &&
-      (farm.chef === Chef.MASTERCHEF_V2)
-    ) {
+    if (account && cloneRewarder && farm && library && farm.chef === Chef.MASTERCHEF_V2) {
       fetchPendingReward()
     }
   }, [account, currentBlockNumber, cloneRewarder, complexRewarder, farm, library, contract, chainId])

@@ -1,4 +1,4 @@
-import { Currency, Price } from '@mistswapdex/sdk'
+import { Currency, Price } from '@fogofwar/sdk'
 import React, { useCallback } from 'react'
 
 import Typography from '../../../components/Typography'
@@ -18,7 +18,7 @@ export default function TradePrice({ price, showInverted, setShowInverted, class
 
   const flipPrice = useCallback(() => setShowInverted(!showInverted), [setShowInverted, showInverted])
 
-  const text = GetRateText({price, showInverted});
+  const text = GetRateText({ price, showInverted })
 
   return (
     <div
@@ -57,7 +57,7 @@ export default function TradePrice({ price, showInverted, setShowInverted, class
 
 export function GetRateText({ price, showInverted }) {
   if (!price) {
-    return "";
+    return ''
   }
 
   let formattedPrice: string
@@ -72,8 +72,7 @@ export function GetRateText({ price, showInverted }) {
 
   const labelInverted = showInverted ? `${price.baseCurrency?.symbol} ` : `${price.quoteCurrency?.symbol}`
 
-
   const text = `${'1 ' + labelInverted + ' = ' + formattedPrice ?? '-'} ${label}`
 
-  return text;
+  return text
 }

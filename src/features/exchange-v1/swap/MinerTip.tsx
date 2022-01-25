@@ -1,4 +1,4 @@
-import { ChainId, CurrencyAmount, SmartBCH } from '@mistswapdex/sdk'
+import { ChainId, CurrencyAmount, SmartBCH } from '@fogofwar/sdk'
 import {
   useUserArcherETHTip,
   useUserArcherGasPrice,
