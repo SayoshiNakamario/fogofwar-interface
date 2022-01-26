@@ -143,7 +143,6 @@ export default function Farm(): JSX.Element {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       pool: usePool(pairAddress),
       allocPoint: pair.allocPoint,
-      mistallocPoint: pair.mistallocPoint,
       balance: '1000000000000000000',
       chef: 0,
       id: pair.farmId,
