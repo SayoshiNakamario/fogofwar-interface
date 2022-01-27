@@ -57,7 +57,7 @@
     "@metamask/jazzicon": "^2.0.0",
     "@fogofwar/core": "0.0.3",
     "@mistswapdex/default-token-list": "0.0.26",
-    "@fogofwar/sdk": "^0.0.12",
+    "@fogofwar/sdk": "^0.0.13",
     "@next/bundle-analyzer": "^11.1.0",
     "@popperjs/core": "^2.9.2",
     "@ramp-network/ramp-instant-sdk": "^2.4.6",

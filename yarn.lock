@@ -1696,10 +1696,10 @@
   dependencies:
     eip-712 "^0.4.3"
 
-"@fogofwar/sdk@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@fogofwar/sdk/-/sdk-0.0.12.tgz#8fc2960a7dbe62321f84072fe521b2e3a5506b0b"
-  integrity sha512-GLveF+EtQ51MFOob/BY6GhWqrFHncR+7HpzE/yBwX0bx2ov421TkUnIs6yKlZgkMYqJ/tzbRUkbIrEt6C0yGHw==
+"@fogofwar/sdk@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@fogofwar/sdk/-/sdk-0.0.13.tgz#fa09d68cf683371629c6a205720765d65ff80421"
+  integrity sha512-iRsM5xykSEUKTyFhTR7bgUXwWzhxq54/OpAXvyTki+hR7Y0k+yoX3i0g6ZJVW+F+IIMxju6nuLgfIJ29E5M7HA==
   dependencies:
     big.js "^6.1.0"
     decimal.js-light "^2.5.0"
